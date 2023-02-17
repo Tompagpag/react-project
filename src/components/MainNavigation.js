@@ -1,12 +1,12 @@
-
+import { Link } from "react-router-dom";
 
 function MainNavigation() {
   return (
     <header id="main-nav">
       <nav>
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/products">Our Products</a></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/products">Our Products</Link></li>
         </ul>
       </nav>
     </header>

@@ -1,12 +1,12 @@
-
+import { Link } from "react-router-dom";
 
 function Welcome() {
   return (
     <main>
       <h1>Welcome to our shop!</h1>
       <p>
-        Please explore <a href="/products">our products</a> or share this
-        site with others.
+        Please explore <Link to="/products">our products</Link> or share this site
+        with others.
       </p>
     </main>
   );
