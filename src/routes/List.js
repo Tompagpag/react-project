@@ -1,39 +1,51 @@
-import { useEffect, useState } from 'react';
-import Character from '../components/Character';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect, useState } from "react";
+import Character from "../components/Character";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function List() {
+const List = () => {
   const [characters, setCharacters] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    fetch("https://rickandmortyapi.com/api/character/")
+      .then((response) => response.json())
+      .then((data) => {
+        setCharacters(data.results);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
+      });
+  }, []);
 
   return (
-    <div className='container'>
-      <nav className='navbar sticky-top navbar-light bg-dark'>
-        <h1 className='navbar-brand text-light'>Rick and Morty</h1>
+    <div className="container">
+      <nav className="navbar sticky-top navbar-light bg-dark">
+        <h1 className="navbar-brand text-light">Rick and Morty</h1>
       </nav>
       <div>
         <h2>Characters</h2>
-        <div className='row'>
+        <div className="row">
           {loading ? (
             <div>Loading...</div>
           ) : (
-
-              <Character
-                key={3}
-                name={"Summer Smith"}
-                origin={{
-                  "name": "Earth (Replacement Dimension)",
-                  "url": "https://rickandmortyapi.com/api/location/20"
+            characters.map((character, index) => {
+              return (
+                <Character
+                  key={`c-${index}`}
+                  name={character.name}
+                  origin={{
+                    name: character.origin.name,
+                    url: character.origin.url,
                   }}
-                image={"https://rickandmortyapi.com/api/character/avatar/3.jpeg"}
-              />
-    
+                  image={character.image}
+                />
+              );
+            })
           )}
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default List;

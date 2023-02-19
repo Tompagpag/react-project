@@ -7,6 +7,8 @@ function MainNavigation() {
         <ul>
           <li><Link to="/">Home</Link></li>
           <li><Link to="/products">Our Products</Link></li>
+          <li><Link to="/blog">Our Blog</Link></li>
+          <li><Link to="/list">List</Link></li>
         </ul>
       </nav>
     </header>
